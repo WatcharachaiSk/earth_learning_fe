@@ -7,7 +7,7 @@ import { AppProvider } from "./context/AppContext.tsx";
 import "./index.css";
 
 // Access environment variable using Vite's import.meta.env
-const GOOGLE_CLIENT_ID = import.meta.env.PUBLIC_GOOGLE_CLIENT_ID;
+const GOOGLE_CLIENT_ID = import.meta.env.VITE_GOOGLE_CLIENT_ID || "";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
