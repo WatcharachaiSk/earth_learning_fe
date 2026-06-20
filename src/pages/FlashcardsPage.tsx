@@ -1,36 +1,55 @@
-import React, { useState } from 'react';
-import { Sparkles, Volume2, ArrowLeft, ArrowRight, Check, Star } from 'lucide-react';
+import React, { useState, useMemo } from 'react';
+import { Sparkles, Volume2, ArrowLeft, ArrowRight, Check, Star, Shuffle } from 'lucide-react';
 import { useApp } from '../context/AppContext';
 
 export default function FlashcardsPage() {
   const { words, progress, handleToggleComplete, handleToggleFavorite, speakWordTTS } = useApp();
   const [currentCardIndex, setCurrentCardIndex] = useState(0);
   const [isCardFlipped, setIsCardFlipped] = useState(false);
+  const [isShuffled, setIsShuffled] = useState(false);
 
-  if (!words || words.length === 0) return <div>Loading...</div>;
+  const displayedWords = useMemo(() => {
+    if (!words) return [];
+    if (!isShuffled) return words;
+    return [...words].sort(() => Math.random() - 0.5);
+  }, [words, isShuffled]);
+
+  if (!displayedWords || displayedWords.length === 0) return <div>Loading...</div>;
 
   const handleNextCard = () => {
     setIsCardFlipped(false);
     setTimeout(() => {
-      setCurrentCardIndex((prev) => (prev + 1) % words.length);
+      setCurrentCardIndex((prev) => (prev + 1) % displayedWords.length);
     }, 150);
   };
 
   const handlePrevCard = () => {
     setIsCardFlipped(false);
     setTimeout(() => {
-      setCurrentCardIndex((prev) => (prev - 1 + words.length) % words.length);
+      setCurrentCardIndex((prev) => (prev - 1 + displayedWords.length) % displayedWords.length);
     }, 150);
   };
 
-  const word = words[currentCardIndex];
+  const word = displayedWords[currentCardIndex];
 
   return (
     <div id="flashcards-section" className="max-w-xl mx-auto space-y-6 animate-fade-in">
       <div className="text-center space-y-2">
         <span className="text-4xl">🦉</span>
         <h2 className="text-2xl font-black text-gray-800 font-display uppercase tracking-tight">แฟลชการ์ดแสนสนุก</h2>
-        <p className="text-sm font-medium text-gray-500">คลิกที่แผ่นการ์ดเพื่อพลิกดูคำแปล คำอ่านออกเสียง และประโยคจำลอง!</p>
+        <div className="flex justify-center items-center gap-2">
+          <p className="text-sm font-medium text-gray-500">คลิกที่แผ่นการ์ดเพื่อพลิกดูคำแปล คำอ่านออกเสียง และประโยคจำลอง!</p>
+          <button 
+            onClick={() => {
+              setIsShuffled(!isShuffled);
+              setCurrentCardIndex(0);
+            }}
+            className={`p-2 rounded-full transition ${isShuffled ? 'bg-[#58CC02] text-white' : 'bg-gray-100 text-gray-400 hover:text-gray-600'}`}
+            title={isShuffled ? "ปิดโหมดสุ่ม" : "เปิดโหมดสุ่ม"}
+          >
+            <Shuffle className="h-4 w-4" />
+          </button>
+        </div>
       </div>
 
       {/* Slide cards */}

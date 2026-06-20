@@ -6,7 +6,7 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
-// Lazy-loaded GenAI client to prevent crashing on startup without API Key
+// Lazy-loaded GenAI  client to prevent crashing on startup without API Key
 let genAIInstance: GoogleGenAI | null = null;
 function getGenAI(): GoogleGenAI {
   if (!genAIInstance) {

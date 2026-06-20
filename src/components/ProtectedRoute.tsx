@@ -5,6 +5,10 @@ import { useAuthStore } from '../store/authStore';
 export default function ProtectedRoute() {
   const { user } = useAuthStore();
 
+  if (import.meta.env.VITE_MODE === 'development') {
+    return <Outlet />;
+  }
+
   if (!user) {
     return <Navigate to="/login" replace />;
   }

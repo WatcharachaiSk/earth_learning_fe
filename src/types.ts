@@ -14,7 +14,7 @@ export interface Word {
   exampleEn: string;
   exampleTh: string;
   difficulty: 'Beginner' | 'Intermediate' | 'Advanced';
-  category: 'Daily Life' | 'Business' | 'Travel' | 'Academic' | 'Technology' | 'Emotion';
+  category: 'Daily Life' | 'Business' | 'Travel' | 'Academic' | 'Technology' | 'Emotion' | 'Society' | 'Science' | 'Social';
   mnemonic?: {
     story: string;
     keyword: string;
