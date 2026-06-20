@@ -1,0 +1,62 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Space Grotesk", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+}
+
+@layer base {
+  body {
+    background-color: #F0F9FF;
+    color: #4B4B4B;
+    font-family: var(--font-sans);
+  }
+}
+
+/* Custom Duolingo-style 3D shadows and active behaviors */
+.duo-shadow-green {
+  box-shadow: 0 4px 0 0 #46A302;
+}
+.duo-shadow-green-lg {
+  box-shadow: 0 8px 0 0 #46A302;
+}
+.duo-shadow-blue {
+  box-shadow: 0 4px 0 0 #1899D6;
+}
+.duo-shadow-yellow {
+  box-shadow: 0 4px 0 0 #D7A700;
+}
+.duo-shadow-red {
+  box-shadow: 0 4px 0 0 #ea2b2b;
+}
+.duo-shadow-purple {
+  box-shadow: 0 4px 0 0 #b356f1;
+}
+.duo-shadow-gray {
+  box-shadow: 0 4px 0 0 #d1d5db;
+}
+
+.duo-btn-active {
+  transition: all 0.1s ease;
+}
+.duo-btn-active:active {
+  transform: translateY(4px);
+  box-shadow: 0 0px 0 0 transparent;
+}
+
+/* Custom flip-card styling */
+.perspective-1000 {
+  perspective: 1000px;
+}
+.transform-style-3d {
+  transform-style: preserve-3d;
+}
+.backface-hidden {
+  backface-visibility: hidden;
+}
+.rotate-y-180 {
+  transform: rotateY(180deg);
+}
+

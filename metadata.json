@@ -1,0 +1,6 @@
+{
+  "name": "English Vocabulary Learner",
+  "description": "An interactive digital learning system for memorizing 1000 essential English words with gamified quizzes, flashcards, and an AI mnemonic assistant.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
